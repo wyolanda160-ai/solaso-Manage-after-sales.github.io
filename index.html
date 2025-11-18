@@ -3,351 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>售后服务原型索引</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 16px;
-            color: #333;
-            background-color: #f5f5f5;
-            line-height: 1.5;
-            padding: 30px 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            text-align: center;
-            color: #ff6b00;
-            margin-bottom: 40px;
-            font-size: 28px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-            font-size: 22px;
-        }
-        
-        h3 {
-            color: #666;
-            margin: 20px 0 15px 0;
-            font-size: 18px;
-            font-weight: 500;
-        }
-        
-        .page-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .page-card {
-            background-color: #f9f9f9;
-            border: 1px solid #e8e8e8;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .page-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: #ff6b00;
-        }
-        
-        .page-card-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-            font-size: 16px;
-        }
-        
-        .page-card-desc {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-        
-        .page-link {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: #ff6b00;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .page-link:hover {
-            background-color: #e55d00;
-        }
-        
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .status-card {
-            border-radius: 8px;
-            padding: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        
-        .status-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .status-card.pending {
-            background-color: #fff7e6;
-            border-color: #ffd591;
-        }
-        
-        .status-card.processing {
-            background-color: #e6f7ff;
-            border-color: #91d5ff;
-        }
-        
-        .status-card.success {
-            background-color: #f6ffed;
-            border-color: #b7eb8f;
-        }
-        
-        .status-card.rejected {
-            background-color: #fff1f0;
-            border-color: #ffccc7;
-        }
-        
-        .status-card.canceled {
-            background-color: #f5f5f5;
-            border-color: #d9d9d9;
-        }
-        
-        .status-card.intervention {
-            background-color: #e6f7ff;
-            border-color: #91d5ff;
-        }
-        
-        .status-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-        
-        .status-link {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 4px;
-            font-size: 13px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .status-link.pending {
-            background-color: #ff9800;
-            color: #fff;
-        }
-        
-        .status-link.processing {
-            background-color: #1890ff;
-            color: #fff;
-        }
-        
-        .status-link.success {
-            background-color: #52c41a;
-            color: #fff;
-        }
-        
-        .status-link.rejected {
-            background-color: #ff4d4f;
-            color: #fff;
-        }
-        
-        .status-link.canceled {
-            background-color: #999;
-            color: #fff;
-        }
-        
-        .status-link.intervention {
-            background-color: #1890ff;
-            color: #fff;
-        }
-        
-        .note {
-            background-color: #fff3e5;
-            border-left: 4px solid #ff6b00;
-            padding: 15px;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #666;
-            border-radius: 4px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+    <title>平台介入管理 - 总后台</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        warning: '#FF7D00',
+                        success: '#00B42A',
+                        danger: '#F53F3F',
+                        gray: {
+                            100: '#F7F8FA',
+                            200: '#E5E6EB',
+                            300: '#C9CDD4',
+                            400: '#86909C',
+                            500: '#4E5969',
+                            600: '#272E3B',
+                            700: '#1D2129',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
             }
-            
-            h1 {
-                font-size: 24px;
-                margin-bottom: 30px;
-            }
-            
-            .page-grid,
-            .status-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .btn-primary { @apply bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-all; }
+            .btn-default { @apply bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200 transition-all; }
+            .btn-warning { @apply bg-warning text-white px-4 py-2 rounded hover:bg-warning/90 transition-all; }
+            .btn-danger { @apply bg-danger text-white px-4 py-2 rounded hover:bg-danger/90 transition-all; }
+            .input-field { @apply border border-gray-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50; }
+            .table-row-hover { @apply hover:bg-gray-50 transition-colors; }
+            .badge-pending { @apply bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs; }
+            .badge-processing { @apply bg-warning/10 text-warning px-2 py-1 rounded-full text-xs; }
+            .badge-completed { @apply bg-success/10 text-success px-2 py-1 rounded-full text-xs; }
+            .badge-refund { @apply bg-primary/10 text-primary px-2 py-1 rounded-full text-xs; }
+            .badge-exchange { @apply bg-warning/10 text-warning px-2 py-1 rounded-full text-xs; }
+            .badge-resend { @apply bg-success/10 text-success px-2 py-1 rounded-full text-xs; }
+            .badge-return-refund { @apply bg-danger/10 text-danger px-2 py-1 rounded-full text-xs; }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>平台总后台 - 售后管理系统</h1>
-        
-        <!-- 快速开始指南 -->
-        <div class="note" style="margin-bottom: 30px;">
-            <strong>💡 快速开始：</strong><br>
-            1. 建议从「售后单管理」开始，查看所有用户的售后申请<br>
-            2. 核心流程：售后单管理 → 详情查看 → 执行操作<br>
-            3. 平台介入：需要仲裁的工单可在「平台介入管理」中处理<br>
-            4. 所有页面已实现跳转串联，点击任意页面卡片即可预览
+<body class="bg-gray-100 min-h-screen">
+    <!-- 页面容器 -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- 侧边导航栏 -->
+        <div class="w-64 bg-white shadow-md hidden md:block">
+            <div class="p-4 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-gray-700">总后台管理</h1>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="#" class="flex items-center px-3 py-2 rounded text-primary bg-primary/10 font-medium"><i class="fa fa-gavel mr-3"></i> 平台介入管理</a></li>
+                </ul>
+            </nav>
         </div>
         
-        <!-- 售后管理 -->
-        <div class="section">
-            <h2>📋 售后管理</h2>
-            
-            <div class="page-grid">
-                <div class="page-card">
-                    <div class="page-card-title">售后单管理</div>
-                    <div class="page-card-desc">查看所有用户发起的售后申请，支持筛选和批量操作</div>
-                    <a href="admin-after-sales-list.html" class="page-link" target="_blank">查看页面</a>
-                </div>
-                
-                <div class="page-card" style="border: 2px solid #faad14;">
-                    <div class="page-card-title" style="color: #faad14;">
-                        ⚖️ 平台介入管理
-                        <span style="background: #faad14; color: white; font-size: 11px; padding: 2px 6px; border-radius: 10px; margin-left: 8px;">NEW</span>
+        <!-- 主内容区 -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- 顶部导航栏 -->
+            <header class="bg-white shadow-sm px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="md:hidden">
+                        <button id="menuToggle" class="text-gray-600"><i class="fa fa-bars text-xl"></i></button>
                     </div>
-                    <div class="page-card-desc">管理需要平台仲裁的工单，支持记录处理过程和判定结果</div>
-                    <a href="admin-after-sales-intervention.html" class="page-link" target="_blank">查看页面</a>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa fa-search text-gray-400"></i>
+                        <input type="text" placeholder="全局搜索" class="border-none focus:outline-none text-sm">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-600 relative"><i class="fa fa-bell text-xl"></i><span class="absolute -top-1 -right-1 bg-danger text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span></button>
+                        <div class="flex items-center space-x-2">
+                            <img src="https://picsum.photos/id/1005/200/200" alt="管理员头像" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-sm font-medium text-gray-700">管理员</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="page-card">
-                    <div class="page-card-title">COD退款管理</div>
-                    <div class="page-card-desc">专门管理COD订单退款流程的页面，支持批量处理</div>
-                    <a href="admin-cod-refund.html" class="page-link" target="_blank">查看页面</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 辅助功能 -->
-        <div class="section">
-            <h2>🔧 辅助功能</h2>
+            </header>
             
-            <div class="page-grid">
-                <div class="page-card">
-                    <div class="page-card-title">退款完成</div>
-                    <div class="page-card-desc">确认退款已完成页面，结束售后流程</div>
-                    <a href="admin-after-sales-refund-complete.html" class="page-link" target="_blank">查看页面</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 配置管理 -->
-        <div class="section">
-            <h2>⚙️ 配置管理</h2>
-            
-            <div class="page-grid">
-                <div class="page-card">
-                    <div class="page-card-title">售后配置管理</div>
-                    <div class="page-card-desc">配置售后规则、退款政策和服务标准的管理页面</div>
-                    <a href="admin-after-sales-config.html" class="page-link" target="_blank">查看页面</a>
+            <!-- 页面内容 -->
+            <main class="p-6">
+                <!-- 页面标题区 -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-700 flex items-center">
+                        <i class="fa fa-balance-scale text-primary mr-3"></i>平台介入管理
+                    </h2>
+                    <p class="text-gray-500 mt-1">查看和处理需要平台仲裁的售后工单</p>
                 </div>
                 
-                <div class="page-card">
-                    <div class="page-card-title">售后统计分析</div>
-                    <div class="page-card-desc">提供售后相关的数据分析和报表，支持多维度查询</div>
-                    <a href="admin-after-sales-analysis.html" class="page-link" target="_blank">查看页面</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 售后详情状态页面 -->
-        <div class="section">
-            <h2>📋 售后详情状态页面</h2>
-            <p style="color: #666; font-size: 14px; margin-bottom: 20px;">根据不同售后状态显示对应的详情页面</p>
-            <div class="status-grid">
-                <div class="status-card pending">
-                    <div class="status-title">用户申请状态</div>
-                    <a href="admin-after-sales-detail-applying.html" class="status-link pending" target="_blank">查看页面</a>
+                <!-- 高亮提示区 -->
+                <div class="bg-warning/10 border border-warning/30 rounded-lg p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fa fa-exclamation-circle text-warning text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-warning">重要提示</h3>
+                            <div class="mt-2 text-sm text-gray-600">
+                                <p>请谨慎处理平台介入工单，确保公正公平地解决买卖双方纠纷。处理结果将直接影响用户体验和平台信誉。</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="status-card processing">
-                    <div class="status-title">商户处理状态</div>
-                    <a href="admin-after-sales-detail-merchant-processing.html" class="status-link processing" target="_blank">查看页面</a>
+                <!-- 筛选区域 -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">售后单号</label>
+                            <input type="text" placeholder="请输入售后单号" class="input-field w-full">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">商户名称</label>
+                            <input type="text" placeholder="请输入商户名称" class="input-field w-full">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">售后类型</label>
+                            <select class="input-field w-full">
+                                <option value="">全部</option>
+                                <option value="refund">仅退款</option>
+                                <option value="return_refund">退货退款</option>
+                                <option value="exchange">换货</option>
+                                <option value="resend">补寄</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">介入状态</label>
+                            <select class="input-field w-full">
+                                <option value="">全部</option>
+                                <option value="pending">待分配</option>
+                                <option value="processing">处理中</option>
+                                <option value="completed">已仲裁</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">介入时间范围</label>
+                            <div class="flex space-x-2">
+                                <input type="date" class="input-field w-full">
+                                <span class="text-gray-400 self-center">至</span>
+                                <input type="date" class="input-field w-full">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">处理人</label>
+                            <select class="input-field w-full">
+                                <option value="">全部</option>
+                                <option value="admin">管理员</option>
+                                <option value="user1">客服小王</option>
+                                <option value="user2">客服小李</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end space-x-3">
+                        <button class="btn-default">重置</button>
+                        <button class="btn-primary">查询</button>
+                    </div>
                 </div>
                 
-                <div class="status-card intervention">
-                    <div class="status-title">平台介入状态</div>
-                    <a href="admin-after-sales-detail-platform-intervening.html" class="status-link intervention" target="_blank">查看页面</a>
+                <!-- 批量操作区域 -->
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center space-x-3">
+                        <button class="btn-default flex items-center" id="batchAssign">
+                            <i class="fa fa-user-plus mr-2"></i>批量分配处理人
+                        </button>
+                        <button class="btn-default flex items-center" id="batchExport">
+                            <i class="fa fa-download mr-2"></i>批量导出
+                        </button>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        共 <span class="text-primary font-medium">28</span> 条记录
+                    </div>
                 </div>
                 
-                <div class="status-card success">
-                    <div class="status-title">售后成功状态</div>
-                    <a href="admin-after-sales-detail-success.html" class="status-link success" target="_blank">查看页面</a>
+                <!-- 工单列表表格 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="selectAll" class="rounded text-primary focus:ring-primary">
+                                        </div>
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">售后单号</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">商户名称</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">售后类型</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">申请金额</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">介入原因</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">介入时间</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">处理人</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">介入状态</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <!-- 待分配状态工单 -->
+                                <tr class="table-row-hover">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="record-checkbox rounded text-primary focus:ring-primary">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="#" class="text-primary hover:underline">AF202405120001</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">优质商户A</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-return-refund">退货退款</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">¥299.00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="flex items-center text-gray-600">
+                                            <i class="fa fa-times-circle text-danger mr-1"></i> 商户拒绝退款
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-danger font-medium">2024-05-12 09:30:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-400">待分配</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-pending">待分配</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-2">
+                                            <button class="btn-primary btn-sm px-3 py-1 text-sm" onclick="assignHandler('AF202405120001')">分配处理</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="viewDetail('AF202405120001')">查看详情</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- 处理中状态工单 -->
+                                <tr class="table-row-hover">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="record-checkbox rounded text-primary focus:ring-primary">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="#" class="text-primary hover:underline">AF202405120002</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">优质商户B</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-refund">仅退款</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">¥199.00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="flex items-center text-gray-600">
+                                            <i class="fa fa-handshake-o text-warning mr-1"></i> 双方协商未果
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">2024-05-12 10:15:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">客服小王</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-processing">处理中</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-2">
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="addProgress('AF202405120002')">添加进度</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="transferHandler('AF202405120002')">转移处理人</button>
+                                            <button class="btn-primary btn-sm px-3 py-1 text-sm" onclick="processCase('AF202405120002')">处理</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="viewDetail('AF202405120002')">查看详情</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- 已仲裁状态工单 -->
+                                <tr class="table-row-hover">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="record-checkbox rounded text-primary focus:ring-primary">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="#" class="text-primary hover:underline">AF202405120003</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">优质商户C</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-exchange">换货</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">¥399.00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="flex items-center text-gray-600">
+                                            <i class="fa fa-exclamation-triangle text-warning mr-1"></i> 质量纠纷
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">2024-05-11 14:20:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">客服小李</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-completed">已仲裁</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-2">
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="viewDetail('AF202405120003')">查看详情</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- 待分配状态工单 -->
+                                <tr class="table-row-hover">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="record-checkbox rounded text-primary focus:ring-primary">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="#" class="text-primary hover:underline">AF202405120004</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">优质商户D</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-resend">补寄</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">¥59.00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="flex items-center text-gray-600">
+                                            <i class="fa fa-truck text-danger mr-1"></i> 虚假发货
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-danger font-medium">2024-05-12 08:45:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-400">待分配</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-pending">待分配</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-2">
+                                            <button class="btn-primary btn-sm px-3 py-1 text-sm" onclick="assignHandler('AF202405120004')">分配处理</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="viewDetail('AF202405120004')">查看详情</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- 处理中状态工单 -->
+                                <tr class="table-row-hover">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="checkbox" class="record-checkbox rounded text-primary focus:ring-primary">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="#" class="text-primary hover:underline">AF202405120005</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">优质商户E</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-return-refund">退货退款</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-medium">¥499.00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="flex items-center text-gray-600">
+                                            <i class="fa fa-cube text-danger mr-1"></i> 物流损坏
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">2024-05-12 11:30:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">客服小王</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="badge-processing">处理中</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-2">
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="addProgress('AF202405120005')">添加进度</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="transferHandler('AF202405120005')">转移处理人</button>
+                                            <button class="btn-primary btn-sm px-3 py-1 text-sm" onclick="processCase('AF202405120005')">处理</button>
+                                            <button class="btn-default btn-sm px-3 py-1 text-sm" onclick="viewDetail('AF202405120005')">查看详情</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 分页控件 -->
+                    <div class="px-6 py-4 bg-white border-t border-gray-200 flex items-center justify-between">
+                        <div class="flex-1 flex justify-between sm:hidden">
+                            <button class="btn-default">上一页</button>
+                            <button class="btn-default ml-3">下一页</button>
+                        </div>
+                        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm text-gray-700">
+                                    显示第 <span class="font-medium">1</span> 至 <span class="font-medium">5</span> 条，共 <span class="font-medium">28</span> 条结果
+                                </p>
+                            </div>
+                            <div>
+                                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                    <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        <span class="sr-only">上一页</span>
+                                        <i class="fa fa-chevron-left text-xs"></i>
+                                    </button>
+                                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-primary text-sm font-medium text-white">1</button>
+                                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</button>
+                                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</button>
+                                    <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">...</span>
+                                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">6</button>
+                                    <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        <span class="sr-only">下一页</span>
+                                        <i class="fa fa-chevron-right text-xs"></i>
+                                    </button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="status-card success">
-                    <div class="status-title">平台退款状态</div>
-                    <a href="admin-after-sales-detail-platform-refund.html" class="status-link success" target="_blank">查看页面</a>
-                </div>
-                
-                <div class="status-card rejected">
-                    <div class="status-title">售后拒绝状态</div>
-                    <a href="admin-after-sales-detail-rejected.html" class="status-link rejected" target="_blank">查看页面</a>
-                </div>
-                
-                <div class="status-card canceled">
-                    <div class="status-title">售后撤销状态</div>
-                    <a href="admin-after-sales-detail-canceled.html" class="status-link canceled" target="_blank">查看页面</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="note">
-            <strong>📝 说明：</strong><br>
-            1. 所有页面均为静态HTML原型，部分交互功能通过JavaScript实现模拟效果。<br>
-            2. 页面采用响应式设计，在不同设备上都有良好的显示效果。<br>
-            3. 页面间已实现跳转串联，可体验完整的售后管理流程。<br>
-            4. 功能模块：<strong>售后管理(3)</strong> + <strong>辅助功能(1)</strong> + <strong>配置管理(2)</strong> + <strong>状态详情页(7)</strong>。<br>
+            </main>
         </div>
     </div>
+    
+    <!-- JavaScript 交互 -->
+    <script>
+        // 全选功能
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.record-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+        
+        // 批量分配处理人
+        document.getElementById('batchAssign').addEventListener('click', function() {
+            const selectedCount = document.querySelectorAll('.record-checkbox:checked').length;
+            if (selectedCount === 0) {
+                alert('请选择需要分配的工单');
+                return;
+            }
+            alert(`已选择 ${selectedCount} 个工单，准备分配处理人`);
+            // 实际项目中这里会打开分配处理人弹窗
+        });
+        
+        // 批量导出
+        document.getElementById('batchExport').addEventListener('click', function() {
+            const selectedCount = document.querySelectorAll('.record-checkbox:checked').length;
+            if (selectedCount === 0) {
+                alert('请选择需要导出的工单');
+                return;
+            }
+            alert(`已选择 ${selectedCount} 个工单，开始导出`);
+            // 实际项目中这里会触发导出操作
+        });
+        
+        // 侧边栏切换（移动端）
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const sidebar = document.querySelector('.w-64');
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('fixed');
+            sidebar.classList.toggle('inset-0');
+            sidebar.classList.toggle('z-50');
+        });
+        
+        // 分配处理人
+        function assignHandler(orderId) {
+            alert(`分配处理人工单: ${orderId}`);
+            // 实际项目中这里会打开分配处理人弹窗
+        }
+        
+        // 查看详情
+        function viewDetail(orderId) {
+            alert(`查看工单详情: ${orderId}`);
+            // 实际项目中这里会跳转到详情页
+        }
+        
+        // 添加进度
+        function addProgress(orderId) {
+            alert(`为工单添加进度: ${orderId}`);
+            // 实际项目中这里会打开添加进度弹窗
+        }
+        
+        // 转移处理人
+        function transferHandler(orderId) {
+            alert(`转移处理人工单: ${orderId}`);
+            // 实际项目中这里会打开转移处理人弹窗
+        }
+        
+        // 处理工单
+        function processCase(orderId) {
+            alert(`处理工单: ${orderId}`);
+            // 实际项目中这里会打开处理工单弹窗
+        }
+    </script>
 </body>
 </html>
